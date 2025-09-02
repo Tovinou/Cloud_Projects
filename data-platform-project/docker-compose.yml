@@ -1,0 +1,75 @@
+version: "3.9"
+
+services:
+  # Simple Python App (Övning 1)
+  simple-app:
+    build: ./simple-python-app
+    container_name: simple_app
+    volumes:
+      - ./simple-python-app/data:/app/data
+
+  # Flask App (Övning 2)
+  flask-app:
+    build: ./flask-app
+    container_name: flask_app
+    ports:
+      - "5000:5000"
+
+  # Flask DB App (Övning 3)
+  flask-db-app:
+    build: ./flask-db-app
+    container_name: flask_db_app
+    ports:
+      - "5001:5000"
+    depends_on:
+      - db
+    environment:
+      - FLASK_ENV=development
+
+  # Database
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # Cron Job (Övning 4)
+  cron-job:
+    build: ./cron-job
+    container_name: cron_job
+    volumes:
+      - ./cron-job/data:/data
+
+  # Nginx for cron results (Övning 4)
+  cron-web:
+    image: nginx:alpine
+    container_name: cron_web
+    volumes:
+      - ./cron-job/data:/usr/share/nginx/html:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+
+  # Fake Data API (Övning 5.1)
+  fake-data-api:
+    build: ./fake-data-api
+    container_name: fake_data_api
+    ports:
+      - "5002:5000"
+
+  # ETL Processor (Övning 5.2)
+  etl-processor:
+    build: ./etl-processor
+    container_name: etl_processor
+    depends_on:
+      - fake-data-api
+      - db
+    volumes:
+      - ./etl-processor/data:/app/data
+
+volumes:
+  db_data:
