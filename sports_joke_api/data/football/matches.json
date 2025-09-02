@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "UEFA Champions League",
+    "country": "Europe"
+  },
+  {
+    "id": 2,
+    "name": "Ligue 1",
+    "country": "France"
+  },
+  {
+    "id": 3,
+    "name": "La Liga",
+    "country": "Spain"
+  }
+]

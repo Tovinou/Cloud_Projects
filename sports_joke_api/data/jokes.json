@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "joke": "Why did the football coach go to the bank? To get his quarter back!",
+    "category": "football"
+  },
+  {
+    "id": 2,
+    "joke": "Why don't scientists trust atoms? Because they make up everything!",
+    "category": "science"
+  },
+  {
+    "id": 3,
+    "joke": "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+    "category": "puns"
+  }
+]
