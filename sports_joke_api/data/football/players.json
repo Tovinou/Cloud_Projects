@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Cristiano Ronaldo",
+    "position": "Forward",
+    "team_id": 1,
+    "nationality": "Portugal"
+  },
+  {
+    "id": 2,
+    "name": "Lionel Messi",
+    "position": "Forward",
+    "team_id": 2,
+    "nationality": "Argentina"
+  },
+  {
+    "id": 3,
+    "name": "Robert Lewandowski",
+    "position": "Forward",
+    "team_id": 3,
+    "nationality": "Poland"
+  }
+]
