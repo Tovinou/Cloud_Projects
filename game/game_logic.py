@@ -37,7 +37,7 @@ class Game21:
             elif choice in ['s', 'stanna']:
                 return True
             else:
-                print("❌ Ogiltigt val! Välj 'r' för rulla eller 's' för stanna.")
+                print(" Ogiltigt val! Välj 'r' för rulla eller 's' för stanna.")
     
     def dealer_turn(self):
         """Hanterar dealerns tur (automatisk enligt regler)"""

@@ -21,7 +21,7 @@ class GameUI:
     @staticmethod
     def show_bust(player_name):
         """Visar bust-meddelande"""
-        print(f"❌ {player_name} blev tjock! Förlust!")
+        print(f" {player_name} blev tjock! Förlust!")
     
     @staticmethod
     def show_round_result(game):
@@ -36,11 +36,11 @@ class GameUI:
     def show_winner(result):
         """Visar vinnaren"""
         if result == "player":
-            print("🎉 Spelaren vinner!")
+            print(" Spelaren vinner!")
         elif result == "dealer":
-            print("💼 Dealern vinner!")
+            print(" Dealern vinner!")
         else:
-            print("🤝 Oavgjort!")
+            print(" Oavgjort!")
     
     @staticmethod
     def show_scoreboard(game):
@@ -61,7 +61,7 @@ class GameUI:
                 elif choice in ['n', 'nej', 'no']:
                     return False
                 else:
-                    print("❌ Ogiltigt val! Välj 'j' för ja eller 'n' för nej.")
+                    print(" Ogiltigt val! Välj 'j' för ja eller 'n' för nej.")
             except (KeyboardInterrupt, EOFError):
                 return False
             except Exception:

@@ -42,7 +42,7 @@ Tärningsspelet 21 är ett turbaserat spel där spelaren och dealern turas om at
 
 Starta spelet genom att köra:
 ```
-python main.py
+python3 main.py
 ```
 
 Följ instruktionerna på skärmen för att spela. Du kommer att få välja mellan att slå tärningen (`r`) eller stanna (`s`) under din tur.
@@ -74,7 +74,7 @@ twenty_1_game/
 
 Kör alla tester med:
 ```
-python run_tests.py
+python3 run_tests.py
 ```
 
 Eller använd pytest direkt:
@@ -100,22 +100,3 @@ För att bidra till projektet:
 ## Licens
 
 Detta projekt är licensierat under MIT-licensen - se [LICENSE](LICENSE) filen för detaljer.
-
----
-
-## Part of Cloud_Projects Repository
-
-This project, "Tärningsspelet 21 (Dice Game 21)", is part of a larger collection of projects and exercises for the "Dataplattformar, dataintegration och molnlösningar" course at Jensen, hosted in the `Cloud_Projects` repository.
-
-The `Cloud_Projects` repository contains:
-
--   **`/data-platform-project/`**: A microservices-based data platform project using Docker Compose. It includes services for a fake data API, an ETL processor, a cron job, a Flask web application, and an Nginx reverse proxy.
--   **`/EC2-instans docker/`**: Contains resources and instructions related to setting up and running Docker on an AWS EC2 instance.
--   **`/futurama_data/`**: A Python application that fetches data from a Futurama API and demonstrates storing it in various data stores, including MySQL, MongoDB, Redis, and the local file system.
--   **`/My_project/`**: A template or starting point for a general Python project.
--   **`/Pandas_Data_Analysis/`**: A data analysis project using the Pandas library. It includes scripts for downloading a Kaggle dataset, Jupyter notebooks for analysis, and various exercises.
--   **`/Python_app/`**: A containerized Python application using Docker Compose, featuring a cron job and a Flask web application.
--   **`/sports_joke_api/`**: A simple API that serves sports-related jokes, containerized with Docker.
--   **`/Övning/`**: Contains various exercises related to the course topics. (Övning is Swedish for "Exercise").
-
-Each project directory is self-contained. Refer to their respective `README.md` files for specific instructions.
