@@ -1,0 +1,2 @@
+# Blackjack Spel - Requirements
+# Ingen ytterligare bibliotek behövs då vi bara använder Pythons standardbibliotek
