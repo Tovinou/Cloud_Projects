@@ -1,0 +1,46 @@
+name: CI/CD to OpenShift Sandbox
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - run: behave
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install OpenShift CLI
+        run: |
+          wget -q https://mirror.openshift.com/pub/openshift-v4/clients/ocp/stable/openshift-client-linux.tar.gz
+          tar -xzf openshift-client-linux.tar.gz
+          sudo mv oc /usr/local/bin/
+      
+      - name: Login to OpenShift
+        run: |
+          oc login --token=${{ secrets.OPENSHIFT_TOKEN }} --server=${{ secrets.OPENSHIFT_SERVER }} --insecure-skip-tls-verify=true
+      
+      - name: Use existing project (no project creation)
+        run: |
+          echo "Using current project: $(oc project -q)"
+      
+      - name: Deploy application
+        run: |
+          oc new-app python:3.11~https://github.com/${{ github.repository }} --name=my-python-app
+          oc expose svc/my-python-app
+      
+      - name: Verify deployment
+        run: |
+          oc status
+          oc get pods,svc,route
