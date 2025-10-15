@@ -5,4 +5,4 @@ Feature: Webbapplikation
 
 Scenario: Hälsningsmeddelande
   När jag anropar "/"
-  Ska jag se "Hej Claude från GitHub Actions + OpenShift!"
+  Ska jag se "Hej från GitHub Actions + OpenShift!"

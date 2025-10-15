@@ -1,8 +1,14 @@
-name: CI/CD to OpenShift Sandbox
+name: CI/CD to OpenShift
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - cd-ci
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   test:
@@ -12,10 +18,20 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - run: pip install -r requirements.txt
-      - run: behave
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: simple_cd_ci_pipeline
+      - name: Start Flask app (background)
+        run: nohup python app.py &
+        working-directory: simple_cd_ci_pipeline
+      - name: Run Behave tests
+        run: |
+          sleep 3
+          behave
+        working-directory: simple_cd_ci_pipeline
 
   deploy:
+    if: ${{ secrets.OPENSHIFT_TOKEN != '' && secrets.OPENSHIFT_SERVER != '' }}
     runs-on: ubuntu-latest
     needs: test
     steps:
@@ -37,7 +53,7 @@ jobs:
       
       - name: Deploy application
         run: |
-          oc new-app python:3.11~https://github.com/${{ github.repository }} --name=my-python-app
+          oc new-app python:3.11~https://github.com/${{ github.repository }} --context-dir=simple_cd_ci_pipeline --name=my-python-app
           oc expose svc/my-python-app
       
       - name: Verify deployment
